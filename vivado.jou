@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Dec 11 17:20:51 2024
+# Process ID: 31988
+# Current directory: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17660 C:\Users\cchin\Documents\UST\year4 fall\ELEC4320\project\FPGA_calculator\FPGA_calculator.xpr
+# Log file: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/vivado.log
+# Journal file: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator\vivado.jou
+# Running On: DESKTOP-KALH3BJ, OS: Windows, CPU Frequency: 1896 MHz, CPU Physical cores: 16, Host memory: 14877 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.xpr}
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files {{C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/hw/archive_project_summary.txt}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/hw/archive_project_summary.txt}}

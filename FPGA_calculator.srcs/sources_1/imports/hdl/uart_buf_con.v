@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: Digilent Inc
-// Engineer: Arthur Brown
+// Company: 
+// Engineer: 
 // 
-// Create Date: 07/27/2016 03:53:30 PM
+// Create Date: 12/11/2024 03:53:30 PM
 // Design Name: 
 // Module Name: uart_buf_con
 // Project Name: 

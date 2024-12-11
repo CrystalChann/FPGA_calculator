@@ -1,16 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: Digilent Inc 
-// Engineer: Arthur Brown
+// Company:  
+// Engineer: 
 // 
-// Create Date: 07/27/2016 02:04:01 PM
-// Design Name: Basys3 Keyboard Demo
+// Create Date: 12/10/2024 02:04:01 PM
+// Design Name: 
 // Module Name: top
-// Project Name: Keyboard
-// Target Devices: Basys3
-// Tool Versions: 2016.X
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
 // Description: 
-//     Receives input from USB-HID in the form of a PS/2, displays keyboard key presses and releases over USB-UART.
 // Dependencies: 
 // 
 // Revision:
