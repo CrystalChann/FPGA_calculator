@@ -31,25 +31,27 @@ numbers from 0-9 that can input to the data, shown with a form of *meaning numbe
 
 All operations that can be used, shown with a form of *meaning operation -> code represents keyboards with basys3 FPGA board (keyboard key)*
 
-addition -> 1C (a)
+[x] addition -> 1C (a)
 
-subtraction -> 4E (-)
+[x] subtraction -> 4E (-)
 
-multiplication -> 3A (m)
+[?] multiplication -> 3A (m)
 
-division -> 4A (/)
+[?] division -> 4A (/)
 
-square root -> 2D (r)
+[ ] square root -> 2D (r)
 
-cosine -> 21 (c)
+[?] cosine -> 21 (c)
+ 
+[?] sine -> 1B (s)
 
-sine -> 1B (s)
+[ ] tangent -> 2C (t)
 
-tangent -> 2C (t)
+[ ] logarithm -> 4B (l)
 
-logarithm -> 4B (l)
+[ ] exponential -> 24 (e)
 
-exponential -> 24 (e)
+[?] powering -> 4D (p)
 
 enter key that can change the state of input state of FPGA, shown with a form of *meaning enter -> code represents keyboards with basys3 FPGA board (keyboard key)*
 
