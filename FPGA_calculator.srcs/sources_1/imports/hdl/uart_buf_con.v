@@ -19,6 +19,9 @@
 //  
 //////////////////////////////////////////////////////////////////////////////////
 
+//Formats data with CR/LF
+//Adds spaces between bytes
+//Controls data flow to UART transmitter
 
 module uart_buf_con(
     input             clk,

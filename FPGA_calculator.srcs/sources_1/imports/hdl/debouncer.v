@@ -19,6 +19,9 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//Ensures clean signal by requiring input to be stable for COUNT_MAX cycles
+//Applied to both PS/2 clock and data signals
+//Prevents false triggers from signal noise
 
 module debouncer(
     input clk,

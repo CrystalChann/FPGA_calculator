@@ -19,6 +19,9 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//Creates UART frame with start/stop bits
+//Shifts out data at specified baud rate
+//Maintains proper timing using cd_count
 
 module uart_tx(
     input       clk   ,

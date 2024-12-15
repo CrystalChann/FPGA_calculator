@@ -19,6 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//Online open source
+//Handles PS/2 protocol communication
+//Receives serial data from keyboard
+//Debounces input signals
+//Assembles 8-bit scan codes into 16-bit keycodes
+//Uses 11-bit frame (1 start bit, 8 data bits, 1 parity, 1 stop bit)
 
 module PS2Receiver(
     input clk,
@@ -51,6 +57,10 @@ debouncer #(
     .O(kdataf)
 );
     
+//Data reception process:
+//Samples data on falling edge of PS/2 clock
+//Assembles 8 bits into datacur register
+//Stores two consecutive bytes (dataprev and datacur) to form 16-bit keycode
 always@(negedge(kclkf))begin
     case(cnt)
     0:;//Start bit

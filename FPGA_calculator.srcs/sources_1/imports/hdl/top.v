@@ -15,11 +15,20 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-//     Known issue, when multiple buttons are pressed and one is released, the scan code of the one still held down is ometimes re-sent.
+//
 //////////////////////////////////////////////////////////////////////////////////
 
+//a PS/2 keyboard to UART converter system. It reads input from a PS/2 keyboard, 
+//converts the keycodes to ASCII, and transmits them via UART communication.
 
-module top(
+//Handles the PS/2 keyboard input and coordinates data flow
+
+//Clock divider for 50MHz clock
+//PS/2 receiver interface
+//Keycode to ASCII conversion
+//UART transmission control
+
+module keyboard_top(
     input         clk,
     input         PS2Data,
     input         PS2Clk,

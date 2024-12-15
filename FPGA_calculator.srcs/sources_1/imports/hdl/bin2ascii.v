@@ -18,7 +18,9 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+//Converts each 4-bit nibble to ASCII
+//Numbers 0-9 become ASCII 48-57
+//Letters A-F become ASCII 65-70
 
 module bin2ascii(
     input [NBYTES*8-1:0] I,
