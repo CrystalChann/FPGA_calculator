@@ -42,8 +42,8 @@ module main_cal(
     reg [7:0] operator = 0;
     reg [3:0] digit_count = 0;
     
-    reg signed [31:0] signed_num1;
-    reg signed [31:0] signed_num2;
+    reg signed [9:0] signed_num1;
+    reg signed [9:0] signed_num2;
 
     // Getting the number of 0-9 from the keycode of keyboard
     function [7:0] get_number;
