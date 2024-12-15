@@ -18,31 +18,29 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-//a PS/2 keyboard to UART converter system. It reads input from a PS/2 keyboard, 
-//converts the keycodes to ASCII, and transmits them via UART communication.
-
-//Handles the PS/2 keyboard input and coordinates data flow
+//a PS/2 keyboard to FPGA system. It reads input from a PS/2 keyboard, 
+//converts the keycodes to ASCII, and transmits them to cal.
 
 //Clock divider for 50MHz clock
 //PS/2 receiver interface
 //Keycode to ASCII conversion
-//UART transmission control
+//main calculator stage control
 
-module keyboard_top(
+module top(
     input         clk,
     input         PS2Data,
     input         PS2Clk,
     output        tx
 );
-    wire        tready;
+//    wire        tready;
     wire        ready;
-    wire        tstart;
+//    wire        tstart;
     reg         start=0;
     reg         CLK50MHZ=0;
-    wire [31:0] tbuf;
+//    wire [31:0] tbuf;
     reg  [15:0] keycodev=0;
     wire [15:0] keycode;
-    wire [ 7:0] tbus;
+//    wire [ 7:0] tbus;
     reg  [ 2:0] bcount=0;
     wire        flag;
     reg         cn=0;
@@ -86,7 +84,13 @@ module keyboard_top(
         .O(tbuf)
     );
     
-    uart_buf_con tx_con (
+    main_cal main_cal (
+        .clk (clk),
+        .keycode (keycodev),
+        .result (result)
+    );
+    
+/*    uart_buf_con tx_con (
         .clk    (clk   ),
         .bcount (bcount),
         .tbuf   (tbuf  ),  
@@ -103,6 +107,6 @@ module keyboard_top(
         .tbus   (tbus),
         .tx     (tx),
         .ready  (tready)
-    );
+    ); */
     
 endmodule

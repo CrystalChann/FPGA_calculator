@@ -22,8 +22,7 @@
 
 module main_cal(
     input clk,
-    input [7:0] keycode,     // Input from keyboard
-    input key_valid,         // Valid keypress
+    input [15:0] keycode,     // Input from keyboard
     output reg [31:0] result // Result output
     );
     
@@ -48,19 +47,19 @@ module main_cal(
 
     // Getting the number of 0-9 from the keycode of keyboard
     function [7:0] get_number;
-        input [7:0] keycode;
+        input [15:0] keycode;
         begin
             case(keycode)
-                8'h16: get_number = 8'd1;
-                8'h1E: get_number = 8'd2;
-                8'h26: get_number = 8'd3;
-                8'h25: get_number = 8'd4;
-                8'h2E: get_number = 8'd5;
-                8'h36: get_number = 8'd6;
-                8'h3D: get_number = 8'd7;
-                8'h3E: get_number = 8'd8;
-                8'h46: get_number = 8'd9;
-                8'h45: get_number = 8'd0;
+                16'h16: get_number = 8'd1;
+                16'h1E: get_number = 8'd2;
+                16'h26: get_number = 8'd3;
+                16'h25: get_number = 8'd4;
+                16'h2E: get_number = 8'd5;
+                16'h36: get_number = 8'd6;
+                16'h3D: get_number = 8'd7;
+                16'h3E: get_number = 8'd8;
+                16'h46: get_number = 8'd9;
+                16'h45: get_number = 8'd0;
                 default: get_number = 8'hFF;
             endcase
         end
@@ -68,40 +67,39 @@ module main_cal(
 
     // Check if keycode is a *valid number*
     function is_number;
-        input [7:0] keycode;
+        input [15:0] keycode;
         begin
-            is_number = (keycode == 8'h16 || keycode == 8'h1E || 
-                        keycode == 8'h26 || keycode == 8'h25 || 
-                        keycode == 8'h2E || keycode == 8'h36 || 
-                        keycode == 8'h3D || keycode == 8'h3E || 
-                        keycode == 8'h46 || keycode == 8'h45);
+            is_number = (keycode == 16'h16 || keycode == 16'h1E || 
+                        keycode == 16'h26 || keycode == 16'h25 || 
+                        keycode == 16'h2E || keycode == 16'h36 || 
+                        keycode == 16'h3D || keycode == 16'h3E || 
+                        keycode == 16'h46 || keycode == 16'h45);
         end
     endfunction
 
     // Check if keycode is a *valid operator*
     // Waiting to re-direct the operation after implementing the algorithm of operators
     function is_operator;
-        input [7:0] keycode;
+        input [15:0] keycode;
         begin
-            is_operator = (keycode == 8'h1C || keycode == 8'h4E || 
-                          keycode == 8'h3A || keycode == 8'h4A || 
-                          keycode == 8'h2D || keycode == 8'h21 || 
-                          keycode == 8'h1B || keycode == 8'h2C || 
-                          keycode == 8'h4B || keycode == 8'h24);
+            is_operator = (keycode == 16'h1C || keycode == 16'h4E || 
+                          keycode == 16'h3A || keycode == 16'h4A || 
+                          keycode == 16'h2D || keycode == 16'h21 || 
+                          keycode == 16'h1B || keycode == 16'h2C || 
+                          keycode == 16'h4B || keycode == 16'h24);
         end
     endfunction
 
     // Main state machine
     always @(posedge clk) begin
-        if (key_valid) begin
             case (state)
                 S1: begin // Check num1 sign
-                    if (keycode == 8'h5A) begin // Enter key = num1 positive
+                    if (keycode == 16'h5A) begin // Enter key = num1 positive
                         num1_negative <= 0;
                         state <= S2;
                         digit_count <= 0;
                     end
-                    else if (keycode == 8'h4E) begin // Minus key = num1 negative
+                    else if (keycode == 16'h4E) begin // Minus key = num1 negative
                         num1_negative <= 1;
                         state <= S2;
                         digit_count <= 0;
@@ -115,7 +113,7 @@ module main_cal(
                         if (digit_count == 2)
                             state <= S3;
                     end
-                    else if (keycode == 8'h5A) // Enter key = end entering, for single digit or double digit
+                    else if (keycode == 16'h5A) // Enter key = end entering, for single digit or double digit
                         state <= S3;
                 end
 
@@ -127,13 +125,13 @@ module main_cal(
                 end
 
                 S4: begin // Check num2 sign
-                    if (keycode == 8'h5A) begin // Enter key = num2 positive
+                    if (keycode == 16'h5A) begin // Enter key = num2 positive
                         num2_negative <= 0;
                         state <= S5;
                         digit_count <= 0;
                         num2 <= 0;
                     end
-                    else if (keycode == 8'h4E) begin // - key = num2 negative
+                    else if (keycode == 16'h4E) begin // - key = num2 negative
                         num2_negative <= 1;
                         state <= S5;
                         digit_count <= 0;
@@ -148,7 +146,7 @@ module main_cal(
                         if (digit_count == 2)
                             state <= CALC;
                     end
-                    else if (keycode == 8'h5A) // Enter key
+                    else if (keycode == 16'h5A) // Enter key
                         state <= CALC;
                 end
 
@@ -158,8 +156,8 @@ module main_cal(
                     signed_num2 = num2_negative ? -num2 : num2;
                     
                     case (operator)
-                        8'h1C: result <= signed_num1 + signed_num2; //  Addition
-                        8'h4E: result <= signed_num1 - signed_num2; // Subtraction 
+                        16'h1C: result <= signed_num1 + signed_num2; //  Addition
+                        16'h4E: result <= signed_num1 - signed_num2; // Subtraction 
                     endcase
                     
                     // Show result with 7 segement LED
@@ -173,7 +171,6 @@ module main_cal(
                     digit_count <= 0;
                 end
             endcase
-        end
     end
 
 endmodule

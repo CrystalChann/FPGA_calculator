@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../FPGA_calculator.srcs/sources_1/imports/hdl/PS2Receiver.v" \
+"../../../../FPGA_calculator.srcs/sources_1/imports/hdl/bin2ascii.v" \
+"../../../../FPGA_calculator.srcs/sources_1/imports/hdl/debouncer.v" \
+"../../../../FPGA_calculator.srcs/sources_1/new/main_cal.v" \
+"../../../../FPGA_calculator.srcs/sources_1/imports/hdl/top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
