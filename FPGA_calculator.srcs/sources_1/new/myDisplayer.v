@@ -23,11 +23,12 @@
 module myDisplayer(
     input clock_100Mhz,
     input reset,
-    input lButton,
-    input rButton,
+    input btnL,
+    input btnR,
+    input done,
 
-    output reg[3:0] anode,
-    output reg [6:0] pattern
+    output reg[3:0] an,
+    output reg[6:0] seg
 
     );
     
@@ -36,8 +37,8 @@ module myDisplayer(
 
     //instances de mes boutons
 
-    buttonHandler left(.clk(clock_100Mhz),.rst(reset),.button_in(lButton),.button_pressed(leftPress));
-    buttonHandler right(.clk(clock_100Mhz),.rst(reset),.button_in(rButton),.button_pressed(rightPress));
+    buttonHandler left(.clk(clock_100Mhz),.rst(reset),.button_in(btnL),.button_pressed(leftPress));
+    buttonHandler right(.clk(clock_100Mhz),.rst(reset),.button_in(btnR),.button_pressed(rightPress));
     reg [3:0] displayPosition; //goes from 0 to 8 STRICTLY
     
 
@@ -96,23 +97,23 @@ module myDisplayer(
     always @(*) begin
         case(LED_activating_counter)
         2'b00: begin
-            anode = 4'b0111; 
-            pattern = patterns[0+displayPosition];
+            an = 4'b0111; 
+            seg = seg[0+displayPosition];
         end
 
         2'b01: begin
-            anode = 4'b1011;
-            pattern =  patterns[1+displayPosition];
+            an = 4'b1011;
+            seg =  seg[1+displayPosition];
         end
 
         2'b10: begin
-            anode = 4'b1101;
-            pattern = patterns[2+displayPosition];
+            an = 4'b1101;
+            seg = seg[2+displayPosition];
         end
 
         2'b11: begin
-            anode = 4'b1110;
-            pattern = patterns[3+displayPosition];
+            an = 4'b1110;
+            seg = seg[3+displayPosition];
         end
 
         endcase

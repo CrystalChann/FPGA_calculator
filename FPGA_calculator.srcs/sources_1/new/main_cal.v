@@ -23,7 +23,8 @@
 module main_cal(
     input clk,
     input [15:0] keycode,     // Input from keyboard
-    output reg [31:0] result // Result output
+    output reg [31:0] result, // Result output
+    output reg done
     );
     
     // States
@@ -165,6 +166,7 @@ module main_cal(
     always @(posedge keycode) begin
             case (state)
                 S1: begin // Check num1 sign
+                    done <= 0;
                     if (keycode == 16'h5A) begin // Enter key = num1 positive
                         num1_negative <= 0;
                         state <= S2;
@@ -278,6 +280,7 @@ module main_cal(
                     endcase
                     
                     // Show result with 7 segement LED
+                    done <= 1;
                     // Reset state machine after finish calculation
                     if (keycode == 16'h5A) begin
                         state <= S1;

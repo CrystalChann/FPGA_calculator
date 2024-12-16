@@ -30,13 +30,19 @@ module top(
     input         clk,
     input         PS2Data,
     input         PS2Clk,
-    output        tx
+    input         btnL,
+    input         reset,
+    input         btnR,
+    output        tx,
+    output        seg,
+    output        an
 );
 //    wire        tready;
     wire        ready;
 //    wire        tstart;
     reg         start=0;
     reg         CLK50MHZ=0;
+    reg         CLK100MHZ=0;
 //    wire [31:0] tbuf;
     reg  [15:0] keycodev=0;
     wire [15:0] keycode;
@@ -47,6 +53,10 @@ module top(
     
     always @(posedge(clk))begin
         CLK50MHZ<=~CLK50MHZ;
+    end
+    
+    always @(posedge CLK50MHZ)begin
+        CLK100MHZ<=~CLK100MHZ;
     end
     
     PS2Receiver uut (
@@ -87,7 +97,18 @@ module top(
     main_cal main_cal (
         .clk (clk),
         .keycode (keydecoded),
-        .result (result)
+        .result (result),
+        .done (done)
     );
 
+    myDisplayer displayer (
+        .clock_100Mhz(CLK100MHZ), 
+        .reset(0),                
+        .btnL(btnL),       
+        .btnR(btnR),        
+        .done(done),              
+        .result(result),          
+        .an(an),            
+        .seg(seg)         
+    );
 endmodule
