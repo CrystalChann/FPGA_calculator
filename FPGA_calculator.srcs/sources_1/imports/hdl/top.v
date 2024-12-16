@@ -34,8 +34,8 @@ module top(
     input         reset,
     input         btnR,
     output        tx,
-    output        seg,
-    output        an
+    output        [6:0]seg,
+    output        [3:0]an
 );
 //    wire        tready;
     wire        ready;
@@ -106,8 +106,7 @@ module top(
         .reset(0),                
         .btnL(btnL),       
         .btnR(btnR),        
-        .done(done),              
-        .result(result),          
+        .done(done),            
         .an(an),            
         .seg(seg)         
     );

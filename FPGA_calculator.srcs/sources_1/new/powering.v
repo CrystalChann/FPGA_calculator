@@ -27,7 +27,7 @@ module powering_function (
     output reg signed [19:0] result
 );
 
-    reg signed [19:0] temp_result; // Temp result for multiplication
+    reg signed [19:0] temp_result = 0; // Temp result for multiplication
     reg signed [19:0] current_base; // Current base value
     reg signed [19:0] temp_num1;
     
@@ -47,13 +47,9 @@ module powering_function (
             result = 0; // 0^x  = 0
         end else begin
                 for (i = 0; i < num2; i = i + 1) begin
-                    temp_result = 0; // Reset temp_result for each multiplication
-                    for (j = 0; j < current_base; j = j + 1) begin
-                        temp_result = temp_result + num1; // Add base to itself
-                    end
-                    temp_num1 = temp_result; // Update base to the result of multiplication
+                   temp_result <= num1 * num1;
                 end
-                result = temp_num1;
+                result = temp_result;
         end
     end
 
