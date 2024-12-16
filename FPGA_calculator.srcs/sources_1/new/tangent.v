@@ -22,27 +22,31 @@
 
 module tangent(
     input signed [9:0] angle, // In degree for now
+    input clk,
     output reg signed [9:0] tangent 
     );
 
 sine sine_function(
     .angle (angle),
+    .clk (clk),
     .sine (sine)
     );    
     
 cosine cosine_function(
     .angle (angle),
+    .clk (clk),
     .cosine (cosine)
     );
  
 divider divide (
     .num1 (sine),  
     .num2 (cosine),   
+    .clk (clk),
     .quotient (quotient), 
     .remainder (remainder)
 );
 
-  always @(*) begin
+  always @(posedge clk) begin
         if (cosine != 0) begin
             tangent = quotient; // Assign the quotient to the tangent output
         end else begin

@@ -22,6 +22,7 @@
 
 module exponential(
     input signed [9:0] num1,
+    input clk,
     output reg signed [19:0] expo_result
     );
     
@@ -30,10 +31,11 @@ localparam E_FIXED = 271828; // e * 10^5
 powering_function power(
     .num1 (E_FIXED),
     .num2 (num1),
+    .clk (clk),
     .result (result)
     );    
     
-     always @(*) begin
+     always @(posedge clk) begin
         if (num1 == 0) begin
             expo_result = 10000;
         end

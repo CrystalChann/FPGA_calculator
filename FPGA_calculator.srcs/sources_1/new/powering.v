@@ -23,18 +23,19 @@
 module powering_function (
     input signed [9:0] num1,
     input signed [9:0] num2,
+    input clk,
     output reg signed [19:0] result
 );
 
-    reg signed [19:0] temp_result; // Temporary result for multiplication
+    reg signed [19:0] temp_result; // Temp result for multiplication
     reg signed [19:0] current_base; // Current base value
     reg signed [19:0] temp_num1;
     
     integer i;
     integer j;
 
-    always @(*) begin
-        // Initialize result
+    always @(posedge clk) begin
+        // Init
         result = 0;
         temp_result = 1;
         current_base = num1;
@@ -52,7 +53,7 @@ module powering_function (
                     end
                     temp_num1 = temp_result; // Update base to the result of multiplication
                 end
-                result = temp_num1; // Final result
+                result = temp_num1;
         end
     end
 

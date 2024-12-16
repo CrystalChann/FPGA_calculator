@@ -22,12 +22,13 @@
 module multiplier (
     input signed [9:0] num1,
     input signed [9:0] num2,
+    input clk,
     output reg signed [19:0] product
 );
 
     integer i;
 
-    always @(*) begin
+    always @(posedge clk) begin
         product = 0;
         for (i = 0; i < 4; i = i + 1) begin
             if (num2[i]) begin

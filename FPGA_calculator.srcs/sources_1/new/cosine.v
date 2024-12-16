@@ -22,6 +22,7 @@
 
 module cosine(
     input signed [9:0] angle, // In degree for now
+    input clk,
     output reg signed [9:0] cosine 
 );
 
@@ -37,7 +38,7 @@ module cosine(
     // pi (scaled by 10^8) (not very sure)
     localparam PI = 314159265; // Represents pi in fixed-point format
 
-    always @(*) begin
+    always @(posedge clk) begin
         // Init
         cosine = 0;
         x = angle; 

@@ -23,25 +23,25 @@
 module divider (
     input signed [9:0] num1,  
     input signed [9:0] num2,   
+    input clk,
     output reg signed [9:0] quotient, // 10-bit signed quotient
     output reg signed [9:0] remainder // 10-bit signed remainder
 );
 
-    reg signed [19:0] temp_num1; // Temporary num1 for processing (wider to hold shifts)
-    reg signed [19:0] temp_num2;   // Temporary num2 for processing
+    reg signed [19:0] temp_num1; // Temp num1 for processing (wider to hold shifts)
+    reg signed [19:0] temp_num2;   // Temp num2 for processing
     reg signed [19:0] temp_quotient; 
     integer i;
 
-    always @(*) begin
-        // Initialize
+    always @(posedge clk) begin
+        // Init
         quotient = 0;
         remainder = 0;
         temp_num1 = num1;
         temp_num2 = num2;
 
-        // Check for division by zero
         if (num2 == 0) begin
-            quotient = 10'sd0; // Undefined, set to 0 or handle as needed
+            quotient = 10'sd0;
             remainder = num1;
         end else begin
             // Start division process
@@ -56,8 +56,7 @@ module divider (
                 end
             end
 
-            // Assign final results
-            quotient = temp_quotient[9:0]; // Keep only the lower 10 bits
+            quotient = temp_quotient[9:0];
         end
     end
 

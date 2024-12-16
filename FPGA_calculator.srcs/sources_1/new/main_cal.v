@@ -172,6 +172,14 @@ module main_cal(
                     case (operator)
                         16'h1C: result <= signed_num1 + signed_num2; //  Addition
                         16'h4E: result <= signed_num1 - signed_num2; // Subtraction 
+                        /* 16'h3A: 
+                                multiplier multi (
+                                    .num1 (signed_num1),
+                                    .num2 (signed_num2),
+                                    .product (product)
+                                );
+                                result <= product; */
+                                
                     endcase
                     
                     // Show result with 7 segement LED
