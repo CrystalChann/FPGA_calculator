@@ -31,9 +31,9 @@ numbers from 0-9 that can input to the data, shown with a form of *meaning numbe
 
 All operations that can be used, shown with a form of *meaning operation -> code represents keyboards with basys3 FPGA board (keyboard key)*
 
-[x] addition -> 1C (a)
+[X] addition -> 1C (a)
 
-[x] subtraction -> 4E (-)
+[X] subtraction -> 4E (-)
 
 [?] multiplication -> 3A (m)
 
@@ -45,11 +45,11 @@ All operations that can be used, shown with a form of *meaning operation -> code
  
 [?] sine -> 1B (s)
 
-[ ] tangent -> 2C (t)
+[?] tangent -> 2C (t)
 
-[ ] logarithm -> 4B (l)
+[ ] logarithm -> 4B (l) (reduce log function)
 
-[ ] exponential -> 24 (e)
+[?] exponential -> 24 (e)
 
 [?] powering -> 4D (p)
 
