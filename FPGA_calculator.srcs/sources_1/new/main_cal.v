@@ -122,8 +122,9 @@ module main_cal(
                         if (digit_count == 2)
                             state <= S3;
                     end
-                    else if (keycode == 16'h5A) // Enter key = end entering, for single digit or double digit
+                    else if (keycode == 16'h5A) begin // Enter key = end entering, for single digit or double digit
                         state <= S3;
+                    end
                 end
 
                 S3: begin // Choose operator
@@ -160,8 +161,9 @@ module main_cal(
                         if (digit_count == 2)
                             state <= CALC;
                     end
-                    else if (keycode == 16'h5A) // Enter key
+                    else if (keycode == 16'h5A) begin// Enter key
                         state <= CALC;
+                    end
                 end
 
                 CALC: begin
@@ -170,16 +172,15 @@ module main_cal(
                     signed_num2 = num2_negative ? -num2 : num2;
                     
                     case (operator)
-                        16'h1C: result <= signed_num1 + signed_num2; //  Addition
-                        16'h4E: result <= signed_num1 - signed_num2; // Subtraction 
-                        /* 16'h3A: 
-                                multiplier multi (
-                                    .num1 (signed_num1),
-                                    .num2 (signed_num2),
-                                    .product (product)
-                                );
-                                result <= product; */
-                                
+                        16'h1C: begin 
+                            result <= signed_num1 + signed_num2; //  Addition
+                        end
+                        16'h4E: begin 
+                            result <= signed_num1 - signed_num2; // Subtraction 
+                        end
+                        16'h3A: begin
+                             
+                        end
                     endcase
                     
                     // Show result with 7 segement LED

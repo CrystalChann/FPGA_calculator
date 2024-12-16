@@ -32,7 +32,7 @@ module multiplier (
         product = 0;
         for (i = 0; i < 4; i = i + 1) begin
             if (num2[i]) begin
-                product = product + (num1 << i); 
+                product <= product + (num1 << i); 
             end
         end
     end

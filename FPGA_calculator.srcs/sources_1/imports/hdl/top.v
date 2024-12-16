@@ -81,12 +81,12 @@ module top(
         .NBYTES(2)
     ) conv (
         .I(keycodev),
-        .O(tbuf)
+        .O(keydecoded)
     );
     
     main_cal main_cal (
         .clk (clk),
-        .keycode (keycodev),
+        .keycode (keydecoded),
         .result (result)
     );
 

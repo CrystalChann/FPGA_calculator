@@ -22,7 +22,6 @@
 
 module square_root(
     input wire [9:0] num1,     // Input number (0 to 999)
-    input wire clk,           // Clock signal
     output reg [9:0] sqrt
     );
 

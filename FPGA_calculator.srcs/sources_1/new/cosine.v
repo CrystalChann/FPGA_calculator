@@ -55,7 +55,7 @@ module cosine(
 
         // Calculate the cosine series terms
         for (i = 1; i < 5; i = i + 1) begin
-            // term = -term * (x^2) / ((2*i) * (2*i + 1))
+            // term = -term * (x^2) / ((2*i) * (2*i - 1))
             //  x^2 using repeated addition
             for (j = 0; j < x; j = j + 1) begin
                 x_squared = x_squared + x; // x * x

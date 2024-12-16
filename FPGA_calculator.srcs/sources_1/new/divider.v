@@ -24,12 +24,12 @@ module divider (
     input signed [9:0] num1,  
     input signed [9:0] num2,   
     input clk,
-    output reg signed [9:0] quotient, // 10-bit signed quotient
-    output reg signed [9:0] remainder // 10-bit signed remainder
+    output reg signed [9:0] quotient, // quotient
+    output reg signed [9:0] remainder // remainder
 );
 
-    reg signed [19:0] temp_num1; // Temp num1 for processing (wider to hold shifts)
-    reg signed [19:0] temp_num2;   // Temp num2 for processing
+    reg signed [19:0] temp_num1; // Temp num1
+    reg signed [19:0] temp_num2;   // Temp num2 
     reg signed [19:0] temp_quotient; 
     integer i;
 
@@ -44,7 +44,7 @@ module divider (
             quotient = 10'sd0;
             remainder = num1;
         end else begin
-            // Start division process
+            // Start division
             for (i = 19; i >= 0; i = i - 1) begin
                 // Shift left the remainder and bring down the next bit
                 remainder = {remainder[8:0], temp_num1[i]}; // Shift left and add next bit
