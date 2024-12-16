@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Wed Aug 24 16:00:50 2022
-| Host         : sim-ro running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Mon Dec 16 22:21:53 2024
+| Host         : DESKTOP-KALH3BJ running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
 | Device       : xc7a35t
@@ -73,18 +73,18 @@ Table of Contents
 +---------------------+---------------------------------+---------------------------+------------------+----------------+--------------+
 |     Clock Signal    |          Enable Signal          |      Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
 +---------------------+---------------------------------+---------------------------+------------------+----------------+--------------+
-|  CLK50MHZ_BUFG      | uut/db_clk/clear                |                           |                1 |              1 |         1.00 |
 |  CLK50MHZ_BUFG      | uut/db_clk/O_i_1_n_0            |                           |                1 |              1 |         1.00 |
-|  CLK50MHZ_BUFG      | uut/db_data/O_i_1__0_n_0        |                           |                1 |              1 |         1.00 |
+|  CLK50MHZ_BUFG      | uut/db_clk/clear                |                           |                1 |              1 |         1.00 |
 |  CLK50MHZ_BUFG      | uut/db_data/Iv_i_1__0_n_0       |                           |                1 |              1 |         1.00 |
-| ~uut/db_clk/O_reg_0 | uut/cnt                         | uut/cnt[3]_i_1_n_0        |                1 |              4 |         4.00 |
+|  CLK50MHZ_BUFG      | uut/db_data/O_i_1__0_n_0        |                           |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG      |                                 |                           |                4 |              4 |         1.00 |
 |  clk_IBUF_BUFG      | get_tx/count                    | get_tx/p_0_in             |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG      | get_tx/running_reg_1[0]         |                           |                1 |              4 |         4.00 |
+| ~uut/db_clk/O_reg_0 | uut/cnt                         | uut/cnt[3]_i_1_n_0        |                1 |              4 |         4.00 |
 |  CLK50MHZ_BUFG      | uut/db_data/count[4]_i_1__0_n_0 | uut/db_data/Iv_i_1__0_n_0 |                1 |              5 |         5.00 |
 |  CLK50MHZ_BUFG      |                                 |                           |                3 |              7 |         2.33 |
-| ~uut/db_clk/O_reg_0 |                                 |                           |                3 |              9 |         3.00 |
 |  clk_IBUF_BUFG      | get_tx/shift[8]_i_1_n_0         |                           |                2 |              9 |         4.50 |
+| ~uut/db_clk/O_reg_0 |                                 |                           |                3 |              9 |         3.00 |
 |  clk_IBUF_BUFG      |                                 | get_tx/p_0_in             |                4 |             16 |         4.00 |
 |  clk_IBUF_BUFG      | uut/E[0]                        |                           |                4 |             16 |         4.00 |
 |  CLK50MHZ_BUFG      | uut/oflag_i_1_n_0               |                           |                3 |             16 |         5.33 |

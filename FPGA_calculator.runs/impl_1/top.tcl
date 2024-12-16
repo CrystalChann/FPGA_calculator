@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "D:/WorkBORI/Basys-3/hw/proj/hw.runs/impl_1/top.tcl"
+  variable script "C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.runs/impl_1/top.tcl"
   variable category "vivado_impl"
 }
 
@@ -122,25 +122,24 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 12
+  set_param chipscope.maxJobs 4
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
-  set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir D:/WorkBORI/Basys-3/hw/proj/hw.cache/wt [current_project]
-  set_property parent.project_path D:/WorkBORI/Basys-3/hw/proj/hw.xpr [current_project]
+  set_property webtalk.parent_dir {C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.cache/wt} [current_project]
+  set_property parent.project_path {C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.xpr} [current_project]
   set_property ip_repo_paths D:/WorkBORI/Basys-3/hw/repo [current_project]
   update_ip_catalog
-  set_property ip_output_repo D:/WorkBORI/Basys-3/hw/proj/cache [current_project]
+  set_property ip_output_repo {{C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.cache/ip}} [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet D:/WorkBORI/Basys-3/hw/proj/hw.runs/synth_1/top.dcp
+  add_files -quiet {{C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.runs/synth_1/top.dcp}}
 OPTRACE "read constraints: implementation" START { }
-  read_xdc D:/WorkBORI/Basys-3/hw/src/constraints/Basys3_Master.xdc
+  read_xdc {{C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.srcs/constrs_1/imports/constraints/Basys3_Master.xdc}}
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

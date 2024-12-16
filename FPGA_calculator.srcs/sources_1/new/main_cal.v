@@ -44,6 +44,9 @@ module main_cal(
     
     reg signed [9:0] signed_num1;
     reg signed [9:0] signed_num2;
+    
+    reg signed [9:0] final_num1;
+    reg signed [9:0] final_num2;
 
     // Getting the number of 0-9 from the keycode of keyboard
     function [7:0] get_number;
@@ -86,7 +89,7 @@ module main_cal(
                           keycode == 16'h3A || keycode == 16'h4A || 
                           keycode == 16'h2D || keycode == 16'h21 || 
                           keycode == 16'h1B || keycode == 16'h2C || 
-                          keycode == 16'h4B || keycode == 16'h24 || keycode == 16'h4D);
+                          keycode == 16'h24 || keycode == 16'h4D);
         end
     endfunction
     
@@ -95,12 +98,71 @@ module main_cal(
         begin
             single_input = (keycode == 16'h2D || keycode == 16'h21 || 
                           keycode == 16'h1B || keycode == 16'h2C || 
-                          keycode == 16'h4B || keycode == 16'h24);
+                          keycode == 16'h24);
         end
     endfunction
+    
+    // multiplication
+    multiplier mutli_module (
+        .num1 (final_num1),
+        .num2 (final_num2),
+        .clk (clk),
+        .product (product)
+    );
+    
+    // division
+    divider divi_module (
+        .num1 (final_num1),
+        .num2 (final_num2),
+        .clk (clk),
+        .quotient (quotient),
+        .remainder (remainder)
+    );
+    
+    // sine
+    sine sin_module (
+        .angle (final_num1),
+        .clk (clk),
+        .sine (sin_output)
+    );
+    
+    // cosine
+    cosine cos_module (
+        .angle (final_num1),
+        .clk (clk),
+        .cosine (cos_output)
+    );
+    
+    // tangent
+    tangent tan_module (
+        .angle (final_num1),
+        .clk (clk),
+        .tangent (tan_output)
+    );
+    
+    // square root
+    square_root sqrt_module (
+        .num1 (final_num1),
+        .sqrt (sqrt_output)
+    );
+    
+    // powering
+    powering_function power_module (
+        .num1 (final_num1),
+        .num2 (final_num2),
+        .clk (clk),
+        .result (power_output)
+    );
+    
+    // exponential
+    exponential expo_module (
+        .num1 (final_num1),
+        .clk (clk),
+        .expo_result (expo_result)
+    );
 
     // Main state machine
-    always @(posedge clk) begin
+    always @(posedge keycode) begin
             case (state)
                 S1: begin // Check num1 sign
                     if (keycode == 16'h5A) begin // Enter key = num1 positive
@@ -178,20 +240,54 @@ module main_cal(
                         16'h4E: begin 
                             result <= signed_num1 - signed_num2; // Subtraction 
                         end
-                        16'h3A: begin
-                             
+                        16'h3A: begin                           // Multiplication
+                            final_num1 <= signed_num1;
+                            final_num2 <= signed_num2;
+                            result <= product;
+                        end
+                        16'h4A: begin                           // Division
+                            final_num1 <= signed_num1;
+                            final_num2 <= signed_num2;
+                            result <= quotient;
+                        end
+                        16'h1B: begin                           // Sine
+                            final_num1 <= signed_num1; 
+                            result <= sin_output;
+                        end
+                        16'h21: begin                           // Cosine
+                            final_num1 <= signed_num1;
+                            result <= cos_output;
+                        end
+                        16'h2C: begin                           // Tangent
+                            final_num1 <= signed_num1;
+                            result <= tan_output;
+                        end
+                        16'h4D: begin                           // Powering
+                            final_num1 <= signed_num1;
+                            final_num2 <= signed_num2;
+                            result <= power_output;
+                        end
+                        16'h24: begin                           // Exponential
+                            final_num1 <= signed_num1;
+                            result <= expo_result;
+                        end
+                        16'h2D: begin                           // Squre Root
+                            final_num1  <= signed_num1;
+                            result <= sqrt_output;
                         end
                     endcase
                     
                     // Show result with 7 segement LED
                     // Reset state machine after finish calculation
-                    state <= S1;
-                    num1 <= 0;
-                    num2 <= 0;
-                    num1_negative <= 0;
-                    num2_negative <= 0;
-                    operator <= 0;
-                    digit_count <= 0;
+                    if (keycode == 16'h5A) begin
+                        state <= S1;
+                        num1 <= 0;
+                        num2 <= 0;
+                        num1_negative <= 0;
+                        num2_negative <= 0;
+                        operator <= 0;
+                        digit_count <= 0;
+                    end
                 end
             endcase
     end

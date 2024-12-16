@@ -1,13 +1,13 @@
 #-----------------------------------------------------------
-# Vivado v2022.1 (64-bit)
-# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
-# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Wed Aug 24 16:00:07 2022
-# Process ID: 6380
-# Current directory: D:/WorkBORI/Basys-3/hw/proj/hw.runs/impl_1
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Mon Dec 16 22:21:26 2024
+# Process ID: 1284
+# Current directory: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.runs/impl_1
 # Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
-# Log file: D:/WorkBORI/Basys-3/hw/proj/hw.runs/impl_1/top.vdi
-# Journal file: D:/WorkBORI/Basys-3/hw/proj/hw.runs/impl_1\vivado.jou
-# Running On: sim-ro, OS: Windows, CPU Frequency: 2993 MHz, CPU Physical cores: 16, Host memory: 343200 MB
+# Log file: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.runs/impl_1/top.vdi
+# Journal file: C:/Users/cchin/Documents/UST/year4 fall/ELEC4320/project/FPGA_calculator/FPGA_calculator.runs/impl_1\vivado.jou
+# Running On: DESKTOP-KALH3BJ, OS: Windows, CPU Frequency: 1896 MHz, CPU Physical cores: 16, Host memory: 14877 MB
 #-----------------------------------------------------------
 source top.tcl -notrace
