@@ -86,6 +86,15 @@ module main_cal(
                           keycode == 16'h3A || keycode == 16'h4A || 
                           keycode == 16'h2D || keycode == 16'h21 || 
                           keycode == 16'h1B || keycode == 16'h2C || 
+                          keycode == 16'h4B || keycode == 16'h24 || keycode == 16'h4D);
+        end
+    endfunction
+    
+    function single_input;
+        input [15:0] keycode;
+        begin
+            single_input = (keycode == 16'h2D || keycode == 16'h21 || 
+                          keycode == 16'h1B || keycode == 16'h2C || 
                           keycode == 16'h4B || keycode == 16'h24);
         end
     endfunction
@@ -120,7 +129,12 @@ module main_cal(
                 S3: begin // Choose operator
                     if (is_operator(keycode)) begin
                         operator <= keycode; // assign operators
-                        state <= S4;
+                        if (single_input(keycode)) begin
+                            state <= CALC;
+                        end
+                        else begin
+                            state <= S4;
+                        end
                     end
                 end
 

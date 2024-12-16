@@ -89,24 +89,5 @@ module top(
         .keycode (keycodev),
         .result (result)
     );
-    
-/*    uart_buf_con tx_con (
-        .clk    (clk   ),
-        .bcount (bcount),
-        .tbuf   (tbuf  ),  
-        .start  (start ), 
-        .ready  (ready ), 
-        .tstart (tstart),
-        .tready (tready),
-        .tbus   (tbus  )
-    );
-    
-    uart_tx get_tx (
-        .clk    (clk),
-        .start  (tstart),
-        .tbus   (tbus),
-        .tx     (tx),
-        .ready  (tready)
-    ); */
-    
+
 endmodule
