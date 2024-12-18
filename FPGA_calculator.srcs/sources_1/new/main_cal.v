@@ -48,6 +48,8 @@ module main_cal(
     
     reg signed [9:0] final_num1;
     reg signed [9:0] final_num2;
+    
+    reg signed [9:0] neg_num2;
 
     // Getting the number of 0-9 from the keycode of keyboard
     function [7:0] get_number;
@@ -163,11 +165,12 @@ module main_cal(
     );
 
     // Main state machine
-    always @(posedge keycode) begin
+    reg [15:0] previouscode = 16'hFF;
+    always @(posedge clk) begin
             case (state)
                 S1: begin // Check num1 sign
                     done <= 0;
-                    if (keycode == 16'h5A) begin // Enter key = num1 positive
+                    if (keycode == 16'h22) begin // X key = num1 positive
                         num1_negative <= 0;
                         state <= S2;
                         digit_count <= 0;
@@ -177,18 +180,24 @@ module main_cal(
                         state <= S2;
                         digit_count <= 0;
                     end
+                    else
+                        state <= S1;
                 end
 
                 S2: begin // Input num1
-                    if (is_number(keycode) && digit_count < 3) begin
-                        num1 <= (num1 * 10) + get_number(keycode); // num1 *10 for higher digit input
-                        digit_count <= digit_count + 1;
-                        if (digit_count == 2)
+                    if (keycode != previouscode) begin
+                        previouscode <= keycode;
+                  
+                        if (is_number(keycode) && digit_count < 3) begin
+                            num1 <= (num1 * 10) + get_number(keycode); // num1 *10 for higher digit input
+                            digit_count <= digit_count + 1;
+                            if (digit_count == 2)
+                                state <= S3;
+                        end
+                        else if (keycode == 16'h5A) begin // Enter key = end entering, for single digit or double digit
                             state <= S3;
-                    end
-                    else if (keycode == 16'h5A) begin // Enter key = end entering, for single digit or double digit
-                        state <= S3;
-                    end
+                        end
+                     end
                 end
 
                 S3: begin // Choose operator
@@ -201,10 +210,12 @@ module main_cal(
                             state <= S4;
                         end
                     end
+                    else
+                        state <= S3;
                 end
 
                 S4: begin // Check num2 sign
-                    if (keycode == 16'h5A) begin // Enter key = num2 positive
+                    if (keycode == 16'h22) begin // X key = num2 positive
                         num2_negative <= 0;
                         state <= S5;
                         digit_count <= 0;
@@ -219,28 +230,32 @@ module main_cal(
                 end
 
                 S5: begin // Input num2
-                    if (is_number(keycode) && digit_count < 3) begin
-                        num2 <= (num2 * 10) + get_number(keycode);
-                        digit_count <= digit_count + 1;
-                        if (digit_count == 2)
+                    if (keycode != previouscode) begin
+                        previouscode <= keycode;
+                        if (is_number(keycode) && digit_count < 3) begin
+                            num2 <= (num2 * 10) + get_number(keycode);
+                            digit_count <= digit_count + 1;
+                            if (digit_count == 2)
+                                state <= CALC;
+                        end
+                        else if (keycode == 16'h5A) begin// Enter key
                             state <= CALC;
-                    end
-                    else if (keycode == 16'h5A) begin// Enter key
-                        state <= CALC;
-                    end
+                        end
+                     end
                 end
 
                 CALC: begin
                     // Assign the number with the signed part
                     signed_num1 = num1_negative ? -num1 : num1;
                     signed_num2 = num2_negative ? -num2 : num2;
+                    neg_num2 = -signed_num2;
                     
                     case (operator)
                         16'h1C: begin 
                             result <= signed_num1 + signed_num2; //  Addition
                         end
                         16'h4E: begin 
-                            result <= signed_num1 - signed_num2; // Subtraction 
+                            result <= signed_num1 + neg_num2; // Subtraction 
                         end
                         16'h3A: begin                           // Multiplication
                             final_num1 <= signed_num1;

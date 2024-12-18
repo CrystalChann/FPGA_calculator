@@ -42,15 +42,20 @@ module tb;
         clk = 0;
         
         
-        #100 key = 16'h5A;
+        #50 key = 16'h22;
     
         //5 then press enter
-        #100 key = 16'h1E;
-        #100 key = 16'h26;
-        #100 key = 16'h1E;
+        #50 key = 16'h25;
+        //#50 key = 16'h26;
+        //#50 key = 16'h1E;
         //#100 key = 16'h5A;
+        #50 key = 16'h5A;
         
-        //#100 key = 16'h36;
+        // operation
+        #50 key = 16'h1C;
+        
+        #50 key = 16'h22;
+       
         
         
         //press +
@@ -58,8 +63,8 @@ module tb;
         //#100 key = 16'h5A;
         
         //press 7 + enter
-        //#100 key = 16'h3D;
-        //#100 key = 16'h5A;
+        #50 key = 16'h3D;
+        #50 key = 16'h5A;
         
         
         

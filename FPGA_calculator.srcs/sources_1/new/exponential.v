@@ -28,6 +28,8 @@ module exponential(
     
 localparam E_FIXED = 271828; // e * 10^5
 
+
+ 
 powering_function power(
     .num1 (E_FIXED),
     .num2 (num1),
@@ -37,10 +39,10 @@ powering_function power(
     
      always @(posedge clk) begin
         if (num1 == 0) begin
-            expo_result = 10000;
+            expo_result <= 10000;
         end
         else begin
-            expo_result = result; 
+            expo_result <= result; 
         end
     end
 
